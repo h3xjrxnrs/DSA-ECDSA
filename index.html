@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>DSA / ECDSA Підпис та Перевірка</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="header">
+    <h2>Виберіть алгоритм</h2>
+    <select id="algorithm">
+        <option value="dsa">DSA</option>
+        <option value="ecdsa">ECDSA</option>
+    </select>
+</div>
+
+<div class="container">
+    <!-- Ліва панель: Підпис -->
+    <div class="panel">
+        <h3>Підпис повідомлення</h3>
+
+        <label>Повідомлення:</label>
+        <textarea id="sign_message"></textarea>
+
+        <div id="dsa_params" class="params">
+            <h4>Параметри DSA</h4>
+            <input id="dsa_p" placeholder="p">
+            <input id="dsa_q" placeholder="q">
+            <input id="dsa_g" placeholder="g">
+            <input id="dsa_x" placeholder="секретний ключ x">
+            <input id="dsa_k" placeholder="випадкове k">
+        </div>
+
+        <div id="ecdsa_params" class="params hidden">
+            <h4>Параметри ECDSA</h4>
+            <input id="ecdsa_n" placeholder="n (порядок)">
+            <input id="ecdsa_d" placeholder="секретний ключ d">
+            <input id="ecdsa_k" placeholder="випадкове k">
+            <input id="ecdsa_x1" placeholder="координата P.x">
+            <input id="ecdsa_y1" placeholder="координата P.y">
+        </div>
+
+        <button onclick="signMessage()">Підписати</button>
+
+        <label>Підпис (r, s):</label>
+        <textarea id="signature"></textarea>
+    </div>
+
+    <!-- Права панель: Перевірка -->
+    <div class="panel">
+        <h3>Перевірка підпису</h3>
+
+        <label>Повідомлення:</label>
+        <textarea id="verify_message"></textarea>
+
+        <label>Введіть r та s:</label>
+        <input id="verify_r" placeholder="r">
+        <input id="verify_s" placeholder="s">
+
+        <div id="dsa_verify" class="params">
+            <h4>Публічні параметри</h4>
+            <input id="dsa_p2" placeholder="p">
+            <input id="dsa_q2" placeholder="q">
+            <input id="dsa_g2" placeholder="g">
+            <input id="dsa_y2" placeholder="відкритий ключ y">
+        </div>
+
+        <div id="ecdsa_verify" class="params hidden">
+            <h4>Параметри ECDSA</h4>
+            <input id="ecdsa_n2" placeholder="n">
+            <input id="ecdsa_Qx2" placeholder="Q.x">
+            <input id="ecdsa_Qy2" placeholder="Q.y">
+            <input id="ecdsa_Px2" placeholder="P.x">
+            <input id="ecdsa_Py2" placeholder="P.y">
+        </div>
+
+        <button onclick="verifySignature()">Перевірити</button>
+
+        <label>Результат:</label>
+        <textarea id="verify_result"></textarea>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
